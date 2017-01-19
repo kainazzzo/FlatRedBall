@@ -20,9 +20,10 @@ namespace GumPlugin.Managers
         AssetTypeInfo mScreenAti;
         AssetTypeInfo mGraphicalUiElementAti;
         AssetTypeInfo mGumxAti;
-
+        AssetTypeInfo mGumPositionedObjectAti;
 
         List<AssetTypeInfo> mAssetTypesForThisProject = new List<FlatRedBall.Glue.Elements.AssetTypeInfo>();
+        
 
         #endregion
         
@@ -118,6 +119,29 @@ namespace GumPlugin.Managers
             }
         }
 
+        AssetTypeInfo GumPositionedObjectAti => mGumPositionedObjectAti ?? (mGumPositionedObjectAti = new AssetTypeInfo
+        {
+            FriendlyName = "GumPositionedObject",
+            QualifiedRuntimeTypeName = new PlatformSpecificType
+            {
+                QualifiedType = "FlatRedBall.Gum.GumPositionedObject"
+            },
+            CanBeCloned = false,
+            CanIgnorePausing = false,
+            CanBeObject = true,
+            DestroyMethod = "this.RemoveFromManagers()",
+            MustBeAddedToContentPipeline = false,
+            HasCursorIsOn = false,
+            HasVisibleProperty = false,
+            ExtraVariablesPattern = "float X; float Y; float Width; float Height; bool Visible",
+            HideFromNewFileWindow = true,
+            IsPositionedObject = true,
+            AddToManagersMethod = new List<string>
+            {
+                "FlatRedBall.SpriteManager.AddPositionedObject(this)"
+            }
+        });
+
         AssetTypeInfo GraphicalUiElementAti
         {
             get
@@ -206,7 +230,7 @@ namespace GumPlugin.Managers
         }
 
 
-        string GetGumxLoadCode()
+        string  GetGumxLoadCode()
         {
             string toReturn = "FlatRedBall.Gum.GumIdb.StaticInitialize(\"{FILE_NAME}\"); " +
                         "FlatRedBall.Gum.GumIdb.RegisterTypes();  " +
@@ -238,6 +262,8 @@ namespace GumPlugin.Managers
             AddIfNotPresent(ScreenAti);
 
             AddIfNotPresent(GraphicalUiElementAti);
+
+            AddIfNotPresent(GumPositionedObjectAti);
         }
 
 
