@@ -88,6 +88,7 @@
       <Link>Embedded\LibraryFiles\GumDataTypes\IStateContainer.cs</Link>
     </EmbeddedResource>
     <Compile Include="CodeGeneration\BehaviorCodeGenerator.cs" />
+    <EmbeddedResource Include="Embedded\GumPositionedObject.cs" />
     <Compile Include="Managers\GumxPropertiesManager.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>

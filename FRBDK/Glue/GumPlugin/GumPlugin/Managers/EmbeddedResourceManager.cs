@@ -113,6 +113,7 @@ namespace GumPlugin.Managers
             mCodeAdder.Add("GumPlugin/Embedded/GraphicalUiElement.IWindow.cs");
             mCodeAdder.Add("GumPlugin/Embedded/SystemManagers.FlatRedBall.cs");
             mCodeAdder.Add("GumPlugin/Embedded/GumAnimation.cs");
+            mCodeAdder.Add("GumPlugin/Embedded/GumPositionedObject.cs");
 
 
             // Sometimes we can add entire folders because the extensions
