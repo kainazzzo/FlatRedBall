@@ -6,6 +6,7 @@ using GumEntityTester.GumRuntimes;
 using RenderingLibrary.Graphics;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using RenderingLibrary;
 
 namespace FlatRedBall.Gum
 {
@@ -53,7 +54,7 @@ namespace FlatRedBall.Gum
                 }
             }
         }
-        private void WindowToAbsolute(GraphicalUiElement gumElement, ref float worldX, ref float worldY)
+        private void WindowToAbsolute(IPositionedSizedObject gumElement, ref float worldX, ref float worldY)
         {
             Vector3 position = new Vector3();
 
@@ -67,10 +68,11 @@ namespace FlatRedBall.Gum
         {
             float worldX = 0, worldY = 0;
 
-            WindowToAbsolute(uiElement, ref worldX, ref worldY);
+            var ipso = (IPositionedSizedObject)uiElement;
+            var parentIpso = (IPositionedSizedObject)uiElement.Parent;
 
-            positionedObject.X = worldX + uiElement.Width / 2.0f;
-            positionedObject.Y = worldY - uiElement.Height / 2.0f;
+            positionedObject.RelativeX = ipso.X + ipso.Width / 2.0f - parentIpso.Width / 2.0f;
+            positionedObject.RelativeY = -ipso.Y - ipso.Height / 2.0f + parentIpso.Height / 2.0f;
             positionedObject.Name = uiElement.Name;
         }
 
@@ -78,6 +80,7 @@ namespace FlatRedBall.Gum
         {
             var rectangle = new AxisAlignedRectangle();
             MapRectangle(childAsRectangle, rectangle);
+            rectangle.AttachTo(this, false);
 
             this.collision.AxisAlignedRectangles.Add(rectangle);
 
@@ -98,6 +101,7 @@ namespace FlatRedBall.Gum
         {
             var circle = new Circle();
             MapCircle(childAsCircle, circle);
+            circle.AttachTo(this, false);
             this.collision.Circles.Add(circle);
 
             circle.Visible = true;
@@ -122,8 +126,10 @@ namespace FlatRedBall.Gum
 
             WindowToAbsolute(GumUiElement, ref worldX, ref worldY);
 
-            X = worldX + GumUiElement.Width / 2.0f;
-            Y = worldY - GumUiElement.Height / 2.0f;
+            var ipso = (IPositionedSizedObject)GumUiElement;
+
+            X = worldX + ipso.Width / 2.0f;
+            Y = worldY - ipso.Height / 2.0f;
 
             if (collision != null)
             {
