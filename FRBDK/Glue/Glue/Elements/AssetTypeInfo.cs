@@ -200,6 +200,8 @@ namespace FlatRedBall.Glue.Elements
 
         public bool ImplementsIWindow;
 
+        
+
         // Making this a field for now because CSV deserializer can't deserialize list properties
         public List<FlatRedBall.Glue.CodeGeneration.ConversionCodeGenInfo> Conversion;
 
@@ -239,6 +241,7 @@ namespace FlatRedBall.Glue.Elements
             }
         }
 
+        
 
         #endregion
 

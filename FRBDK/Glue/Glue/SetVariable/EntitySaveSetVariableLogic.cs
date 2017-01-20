@@ -165,6 +165,7 @@ namespace FlatRedBall.Glue.SetVariable
 
             }
 
+
             #endregion
 
             #region ImplementsIVisible
@@ -241,7 +242,6 @@ namespace FlatRedBall.Glue.SetVariable
             }
             else
             {
-
                 List<CustomVariable> variablesBefore = new List<CustomVariable>();
                 variablesBefore.AddRange(entitySave.CustomVariables);
 

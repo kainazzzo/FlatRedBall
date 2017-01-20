@@ -138,8 +138,9 @@ namespace GumPlugin.Managers
             IsPositionedObject = true,
             AddToManagersMethod = new List<string>
             {
-                "FlatRedBall.SpriteManager.AddPositionedObject(this)"
-            }
+                "FlatRedBall.SpriteManager.AddPositionedObject(this);"
+            },
+            HasImplementsIColladableProperty = false
         });
 
         AssetTypeInfo GraphicalUiElementAti
