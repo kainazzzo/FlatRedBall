@@ -140,7 +140,7 @@ namespace GumPlugin.Managers
             {
                 "FlatRedBall.SpriteManager.AddPositionedObject(this);"
             },
-            HasImplementsIColladableProperty = false
+            ImplementsICollidable = true
         });
 
         AssetTypeInfo GraphicalUiElementAti

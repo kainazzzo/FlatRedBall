@@ -100,13 +100,6 @@ namespace FlatRedBall.Glue.SaveClasses
         }
 
         /// <summary>
-                    }
-                }
-                return true;
-            }
-        }
-
-        /// <summary>
         /// Returns whether the calling Entity inherits from another Entity that implements IVisible.
         /// Whether the calling Entity itself implements IVisible doesn't matter.
         /// </summary>
